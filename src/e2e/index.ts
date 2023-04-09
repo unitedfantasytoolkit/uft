@@ -3,6 +3,11 @@
 /**
  * @file Orchestration for our Quench tests
  */
+// SETTINGS TESTING IMPORT
+import settingsTests, {
+  key as settingsKey,
+  options as settingsOptions,
+} from "../module/__tests__/settings.test";
 // ACTOR TESTING IMPORTS
 import actorDataModelCharacterTests, {
   key as actorDataModelCharacterKey,
@@ -150,6 +155,14 @@ type Quench = {
 };
 
 Hooks.on("quenchReady", async (quench: Quench) => {
+  /* ------------------------------------------- */
+  /* SETTINGS TESTING                            */
+  /* ------------------------------------------- */
+  quench.registerBatch(
+    settingsKey,
+    settingsTests,
+    settingsOptions
+  );
   /* ------------------------------------------- */
   /* ACTOR TESTING                               */
   /* ------------------------------------------- */
